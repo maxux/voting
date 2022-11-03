@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% for vote in votes %}
+<div class="list-group w-auto">
+    <h1>{{ vote.name }}</h1>
+
+    {% for option in vote.options %}
+    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3 {% if option.winner %}bg-success{% endif %}" aria-current="true">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+                <h6 class="mb-0">{{ option.name }}</h6>
+                <p class="mb-0 opacity-75"></p>
+            </div>
+            <button class="btn btn-{% if option.winner %}info{% else %}secondary{% endif %}">{{ option.value }}</button>
+        </div>
+    </a>
+    {% endfor %}
+
+</div>
+{% endfor %}
+
+{% endblock %}

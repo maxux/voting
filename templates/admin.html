@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Ajouter un vote</h1>
+
+<form action="/admin/new" method="post">
+  <div class="mb-3">
+    <label for="newvote" class="form-label">Nom du vote</label>
+    <input type="text" class="form-control" name="newvote" name="newvote" id="newvote">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Créer</button>
+</form>
+
+<hr>
+
+<h1>Votes</h1>
+
+{% for vote in votes %}
+    <form action="/admin/new" method="post">
+        <h2>{{ vote.name }}</h2>
+
+        <ul>
+        {% for option in vote.options %}
+            <li>{{ option.name }}</li>
+        {% endfor %}
+        </ul>
+
+        <div class="mb-3">
+            <input type="hidden" name="option" value="true">
+            <input type="hidden" name="id" value="{{ vote.id }}">
+
+            <label for="name.{{ vote.id }}" class="form-label">Ajouter une option</label>
+            <input type="text" class="form-control" name="name" id="name.{{ vote.id }}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" name="delete" value="true" class="btn btn-danger">Supprimer</button>
+    </form>
+{% endfor %}
+
+{% endblock %}

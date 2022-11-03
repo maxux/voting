@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<form action="/vote" method="post">
+    {% for vote in votes %}
+    <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
+        <h1>{{ vote.name }}</h1>
+
+        {% for option in vote.options %}
+        <input class="list-group-item-check pe-none" type="radio" name="{{ vote.id }}" id="{{ vote.id }}.{{ option.name }}" value="{{ option.name }}" required>
+        <label class="list-group-item rounded-3 py-3" for="{{ vote.id }}.{{ option.name }}">
+            {{ option.name }}
+        </label>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <div style="text-align: center;">
+        <button type="submit" class="btn btn-primary" style="padding: 1em 2em 1em 2em;">Voter</button>
+    </div>
+</form>
+
+{% endblock %}
