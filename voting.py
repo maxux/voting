@@ -36,8 +36,6 @@ class VotingWebsite:
             data = g.redis.get("votes")
             data = json.loads(data.decode("utf-8"))
 
-            print(request.form)
-
             name = request.form.get("newvote")
             if name != None:
                 vote = {
